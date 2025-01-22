@@ -36,7 +36,8 @@ async def home(request: Request):
 # Route for the frontend (form page)
 @app.get("/frontend", response_class=HTMLResponse)
 async def frontend(request: Request):
-    return templates.TemplateResponse("frontend.html", {"request": request})
+    return HTMLResponse(content="<h1>Frontend is coming soon!</h1>", status_code=200)
+
 
 # Route to handle prediction
 @app.post("/predict", response_class=JSONResponse)
