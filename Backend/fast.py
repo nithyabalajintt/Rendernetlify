@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form
+    from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -12,11 +12,12 @@ app = FastAPI()
 # Add CORS middleware to allow cross-origin requests from the frontend on Netlify
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-url.netlify.app"],  # Replace with your actual Netlify URL
+    allow_origins=["*"],  # Allow all origins while testing
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Mount the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
