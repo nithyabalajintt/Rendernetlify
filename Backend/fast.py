@@ -2,11 +2,9 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.middleware.cors import CORSMiddleware  # Add CORS middleware
+from fastapi.middleware.cors import CORSMiddleware  # CORS middleware
 import pickle
-import numpy as np
 import pandas as pd
-from typing import Tuple
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -14,7 +12,7 @@ app = FastAPI()
 # Add CORS middleware to allow cross-origin requests from the frontend on Netlify
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-url.netlify.app"],  # Update with your actual Netlify URL
+    allow_origins=["https://your-frontend-url.netlify.app"],  # Replace with your actual Netlify URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,12 +28,12 @@ templates = Jinja2Templates(directory="templates")
 model = pickle.load(open('air_quality.pkl', 'rb'))
 scaler = pickle.load(open('scaler.pkl', 'rb'))
 
-# Route for the frontpage
+# Route for the frontpage (main page)
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return templates.TemplateResponse("frontpage.html", {"request": request})
 
-# Route for the frontend (predict form)
+# Route for the frontend (form page)
 @app.get("/frontend", response_class=HTMLResponse)
 async def frontend(request: Request):
     return templates.TemplateResponse("frontend.html", {"request": request})
@@ -55,6 +53,8 @@ async def predict(
 
     # Calculate PM
     pm = pm25 - pm10
+
+    # Prepare features for prediction
     features = pd.DataFrame([[temperature, humidity, pm, no2, so2, co, proximity, population]], 
                             columns=['Temperature', 'Humidity', 'PM', 'NO2', 'SO2', 'CO', 'Proximity_to_Industrial_Areas', 'Population_Density'])
 
