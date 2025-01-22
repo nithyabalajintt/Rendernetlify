@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from mangum import Mangum 
+from fastapi.middleware.cors import CORSMiddleware  # Add CORS middleware
 import pickle
 import numpy as np
 import pandas as pd
@@ -10,6 +10,15 @@ from typing import Tuple
 
 # Initialize FastAPI app
 app = FastAPI()
+
+# Add CORS middleware to allow cross-origin requests from the frontend on Netlify
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://your-frontend-url.netlify.app"],  # Update with your actual Netlify URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Mount the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -70,5 +79,3 @@ import uvicorn
 
 if __name__ == "__main__":
     uvicorn.run("fast:app", host="127.0.0.1", port=8000, reload=True)
-
-handler = Mangum(app)
