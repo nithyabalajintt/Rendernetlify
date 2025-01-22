@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+</head>
+<body style="background: rgba(13, 13, 12, 0.1);">
+    <div class="result-container" style="text-align: center; padding: 20px;">
+        <h1>Prediction Result</h1>
+        <div style="font-size: 20px;">
+            <p><strong>Temperature:</strong> {{ input1 }}°C</p>
+            <p><strong>Humidity:</strong> {{ input2 }}%</p>
+            <p><strong>PM2.5:</strong> {{ input3 }} µg/m³</p>
+            <p><strong>PM10:</strong> {{ input4 }} µg/m³</p>
+            <p><strong>SO₂:</strong> {{ input5 }} µg/m³</p>
+            <p><strong>NO₂:</strong> {{ input6 }} µg/m³</p>
+            <p><strong>CO:</strong> {{ input7 }} µg/m³</p>
+            <p><strong>Proximity:</strong> {{ input8 }} km</p>
+        </div>
+        
+        <h2 style="color: rgb(247, 141, 41);">{{ prediction }}</h2>
+
+        <a href="/" style="font-size: 18px; color: blue;">Go Back</a>
+    </div>
+</body>
+</html>
