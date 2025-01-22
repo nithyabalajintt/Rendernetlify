@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prediction Result</title>
 </head>
-<body>
-    <h1>Prediction Result</h1>
-    <p><strong>Input 1:</strong> {{ input1 }}</p>
-    <p><strong>Input 2:</strong> {{ input2 }}</p>
-    <p><strong>Input 3:</strong> {{ input3 }}</p>
-    <p><strong>Input 4:</strong> {{ input4 }}</p>
-    <p><strong>Input 5:</strong> {{ input5 }}</p>
-    <p><strong>Input 6:</strong> {{ input6 }}</p>
-    <p><strong>Input 7:</strong> {{ input7 }}</p>
-    <p><strong>Input 8:</strong> {{ input8 }}</p>
+<body style="background: rgba(13, 13, 12, 0.1);">
+    <div class="result-container" style="text-align: center; padding: 20px;">
+        <h1>Prediction Result</h1>
+        <div style="font-size: 20px;">
+            <p><strong>Temperature:</strong> {{ input1 }}°C</p>
+            <p><strong>Humidity:</strong> {{ input2 }}%</p>
+            <p><strong>PM2.5:</strong> {{ input3 }} µg/m³</p>
+            <p><strong>PM10:</strong> {{ input4 }} µg/m³</p>
+            <p><strong>SO₂:</strong> {{ input5 }} µg/m³</p>
+            <p><strong>NO₂:</strong> {{ input6 }} µg/m³</p>
+            <p><strong>CO:</strong> {{ input7 }} µg/m³</p>
+            <p><strong>Proximity:</strong> {{ input8 }} km</p>
+        </div>
+        
+        <h2 style="color: rgb(247, 141, 41);">{{ prediction }}</h2>
 
-    <p><strong>Prediction:</strong> {{ prediction }}</p>
-
-    <a href="/">Go Back</a>
+        <a href="/" style="font-size: 18px; color: blue;">Go Back</a>
+    </div>
 </body>
 </html>
