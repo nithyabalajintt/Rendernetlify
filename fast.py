@@ -1,4 +1,4 @@
-    from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -17,7 +17,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # Mount the static files directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -74,9 +73,3 @@ async def predict(
         result_message = "Prediction: The Air Quality in your area looks GOOD 😊."
 
     return {"Prediction": result_message}
-
-# Run the FastAPI app on uvicorn server
-import uvicorn
-
-if __name__ == "__main__":
-    uvicorn.run("fast:app", host="127.0.0.1", port=8000, reload=True)
