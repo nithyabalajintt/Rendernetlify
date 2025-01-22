@@ -38,7 +38,6 @@ async def home(request: Request):
 async def frontend(request: Request):
     return HTMLResponse(content="<h1>Frontend is coming soon!</h1>", status_code=200)
 
-
 # Route to handle prediction
 @app.post("/predict", response_class=JSONResponse)
 async def predict(
